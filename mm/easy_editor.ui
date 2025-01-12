@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Easy Editor</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background-color: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #FF4500, stop:0.5 #8A2BE2, stop:1 #FFD700
+    );
+    border: 8px double #FF69B4;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+QMainWindow::title {
+    color: #FFFFFF;
+    font-family: &quot;Comic Sans MS&quot;;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    background-color: qradialgradient(
+        cx:0.5, cy:0.5, radius:1.0,
+        fx:0.5, fy:0.5,
+        stop:0 #32CD32, stop:1 #7FFFD4
+    );
+    border: 4px dashed #FFD700;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+QMainWindow:hover {
+    background-color: qlineargradient(
+        x1:1, y1:0, x2:0, y2:1,
+        stop:0 #8A2BE2, stop:1 #FF4500
+    );
+    border: 8px solid #32CD32;
+    padding: 20px; /* Simulate a &quot;puff-out&quot; effect */
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="btn_dir">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>240</y>
+      <width>131</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: qradialgradient(
+        cx:0.5, cy:0.5, radius:1.0,
+        fx:0.5, fy:0.5,
+        stop:0 #FF4500, stop:1 #8A2BE2
+    );
+    border: 5px dashed #FFD700;
+    border-radius: 20px;
+    font-family: &quot;Comic Sans MS&quot;;
+    font-size: 18px;
+    color: #FFFFFF;
+    padding: 10px;
+    min-width: 100px;
+}
+
+QPushButton:hover {
+    background-color: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #32CD32, stop:1 #7FFFD4
+    );
+    border: 5px solid #FFFFFF;
+    color: #FF4500;
+    transform: scale(1.1); /* Simulated effect, works with animations */
+}
+
+QPushButton:pressed {
+    background-color: #FFD700;
+    border: 5px dotted #FF69B4;
+    color: #000000;
+    padding-left: 15px;
+    padding-top: 10px; /* Simulate a &quot;pushed down&quot; effect */
+}
+
+QPushButton:disabled {
+    background-color: #A9A9A9;
+    border: 5px solid #696969;
+    color: #FFFFFF;
+    font-style: italic;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Папка</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="lw_files">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>141</width>
+      <height>501</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QListWidget {
+    background-color: qlineargradient(
+        spread:pad, x1:0, y1:0, x2:1, y2:1,
+        stop:0 #FF007F, stop:0.5 #7FFF00, stop:1 #007FFF
+    );
+    border: 5px dashed #FFD700;
+    border-radius: 15px;
+    color: #FFFFFF;
+    font-family: &quot;Comic Sans MS&quot;;
+    font-size: 16px;
+    padding: 10px;
+}
+
+QListWidget::item {
+    background-color: qradialgradient(
+        cx:0.5, cy:0.5, radius:0.8,
+        fx:0.5, fy:0.5,
+        stop:0 #FFA500, stop:1 #FF4500
+    );
+    color: #000000;
+    border: 2px solid #8A2BE2;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+}
+
+QListWidget::item:hover {
+    background-color: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #8A2BE2, stop:1 #32CD32
+    );
+    color: #FFD700;
+    border: 2px solid #FFFFFF;
+}
+
+QListWidget::item:selected {
+    background-color: #4B0082;
+    color: #FFFF00;
+    border: 3px dotted #FF69B4;
+    margin-left: 15px; /* Makes it look like it &quot;jumps out&quot; */
+}
+</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lb_image">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>110</y>
+      <width>621</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    background-color: qradialgradient(
+        cx:0.5, cy:0.5, radius:1.0,
+        fx:0.5, fy:0.5,
+        stop:0 #8A2BE2, stop:1 #FF4500
+    );
+    border: 4px double #FFD700;
+    border-radius: 15px;
+    font-family: &quot;Comic Sans MS&quot;;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFFFFF;
+    padding: 15px;
+    text-align: center;
+    qproperty-alignment: 'AlignCenter';
+    text-shadow: 2px 2px #000000; /* Fake shadow using clever text effects */
+}
+
+QLabel:hover {
+    background-color: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #32CD32, stop:1 #7FFFD4
+    );
+    border: 4px dashed #FF69B4;
+    color: #FFD700;
+    font-size: 22px; /* Slight size increase on hover */
+    transform: scale(1.1); /* Gives a popping effect */
+}
+
+QLabel:disabled {
+    background-color: #A9A9A9;
+    border: 4px solid #696969;
+    color: #D3D3D3;
+    font-style: italic;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Картинка</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>510</y>
+      <width>668</width>
+      <height>58</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="btn_left">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: qradialgradient(
+        cx:0.5, cy:0.5, radius:1.0,
+        fx:0.5, fy:0.5,
+        stop:0 #FF4500, stop:1 #8A2BE2
+    );
+    border: 5px dashed #FFD700;
+    border-radius: 20px;
+    font-family: &quot;Comic Sans MS&quot;;
+    font-size: 18px;
+    color: #FFFFFF;
+    padding: 10px;
+    min-width: 100px;
+}
+
+QPushButton:hover {
+    background-color: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #32CD32, stop:1 #7FFFD4
+    );
+    border: 5px solid #FFFFFF;
+    color: #FF4500;
+    transform: scale(1.1); /* Simulated effect, works with animations */
+}
+
+QPushButton:pressed {
+    background-color: #FFD700;
+    border: 5px dotted #FF69B4;
+    color: #000000;
+    padding-left: 15px;
+    padding-top: 10px; /* Simulate a &quot;pushed down&quot; effect */
+}
+
+QPushButton:disabled {
+    background-color: #A9A9A9;
+    border: 5px solid #696969;
+    color: #FFFFFF;
+    font-style: italic;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Вліво</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_right">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: qradialgradient(
+        cx:0.5, cy:0.5, radius:1.0,
+        fx:0.5, fy:0.5,
+        stop:0 #FF4500, stop:1 #8A2BE2
+    );
+    border: 5px dashed #FFD700;
+    border-radius: 20px;
+    font-family: &quot;Comic Sans MS&quot;;
+    font-size: 18px;
+    color: #FFFFFF;
+    padding: 10px;
+    min-width: 100px;
+}
+
+QPushButton:hover {
+    background-color: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #32CD32, stop:1 #7FFFD4
+    );
+    border: 5px solid #FFFFFF;
+    color: #FF4500;
+    transform: scale(1.1); /* Simulated effect, works with animations */
+}
+
+QPushButton:pressed {
+    background-color: #FFD700;
+    border: 5px dotted #FF69B4;
+    color: #000000;
+    padding-left: 15px;
+    padding-top: 10px; /* Simulate a &quot;pushed down&quot; effect */
+}
+
+QPushButton:disabled {
+    background-color: #A9A9A9;
+    border: 5px solid #696969;
+    color: #FFFFFF;
+    font-style: italic;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Вправо</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_flip">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: qradialgradient(
+        cx:0.5, cy:0.5, radius:1.0,
+        fx:0.5, fy:0.5,
+        stop:0 #FF4500, stop:1 #8A2BE2
+    );
+    border: 5px dashed #FFD700;
+    border-radius: 20px;
+    font-family: &quot;Comic Sans MS&quot;;
+    font-size: 18px;
+    color: #FFFFFF;
+    padding: 10px;
+    min-width: 100px;
+}
+
+QPushButton:hover {
+    background-color: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #32CD32, stop:1 #7FFFD4
+    );
+    border: 5px solid #FFFFFF;
+    color: #FF4500;
+    transform: scale(1.1); /* Simulated effect, works with animations */
+}
+
+QPushButton:pressed {
+    background-color: #FFD700;
+    border: 5px dotted #FF69B4;
+    color: #000000;
+    padding-left: 15px;
+    padding-top: 10px; /* Simulate a &quot;pushed down&quot; effect */
+}
+
+QPushButton:disabled {
+    background-color: #A9A9A9;
+    border: 5px solid #696969;
+    color: #FFFFFF;
+    font-style: italic;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Дзеркало</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_sharp">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: qradialgradient(
+        cx:0.5, cy:0.5, radius:1.0,
+        fx:0.5, fy:0.5,
+        stop:0 #FF4500, stop:1 #8A2BE2
+    );
+    border: 5px dashed #FFD700;
+    border-radius: 20px;
+    font-family: &quot;Comic Sans MS&quot;;
+    font-size: 18px;
+    color: #FFFFFF;
+    padding: 10px;
+    min-width: 100px;
+}
+
+QPushButton:hover {
+    background-color: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #32CD32, stop:1 #7FFFD4
+    );
+    border: 5px solid #FFFFFF;
+    color: #FF4500;
+    transform: scale(1.1); /* Simulated effect, works with animations */
+}
+
+QPushButton:pressed {
+    background-color: #FFD700;
+    border: 5px dotted #FF69B4;
+    color: #000000;
+    padding-left: 15px;
+    padding-top: 10px; /* Simulate a &quot;pushed down&quot; effect */
+}
+
+QPushButton:disabled {
+    background-color: #A9A9A9;
+    border: 5px solid #696969;
+    color: #FFFFFF;
+    font-style: italic;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Різкість</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_bw">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: qradialgradient(
+        cx:0.5, cy:0.5, radius:1.0,
+        fx:0.5, fy:0.5,
+        stop:0 #FF4500, stop:1 #8A2BE2
+    );
+    border: 5px dashed #FFD700;
+    border-radius: 20px;
+    font-family: &quot;Comic Sans MS&quot;;
+    font-size: 18px;
+    color: #FFFFFF;
+    padding: 10px;
+    min-width: 100px;
+}
+
+QPushButton:hover {
+    background-color: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #32CD32, stop:1 #7FFFD4
+    );
+    border: 5px solid #FFFFFF;
+    color: #FF4500;
+    transform: scale(1.1); /* Simulated effect, works with animations */
+}
+
+QPushButton:pressed {
+    background-color: #FFD700;
+    border: 5px dotted #FF69B4;
+    color: #000000;
+    padding-left: 15px;
+    padding-top: 10px; /* Simulate a &quot;pushed down&quot; effect */
+}
+
+QPushButton:disabled {
+    background-color: #A9A9A9;
+    border: 5px solid #696969;
+    color: #FFFFFF;
+    font-style: italic;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Ч/Б</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>18</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
